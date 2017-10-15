@@ -96,6 +96,7 @@ use oat\tao\scripts\install\SetClientLoggerConfig;
 use oat\tao\model\mvc\error\ExceptionInterpreterService;
 use oat\tao\model\mvc\error\ExceptionInterpretor;
 use oat\tao\model\OperatedByService;
+use oat\tao\scripts\install\RegisterResourceService;
 
 /**
  *
@@ -924,6 +925,14 @@ class Updater extends \common_ext_ExtensionUpdater {
         }
 
         $this->skip('12.21.6', '13.0.1');
+
+        if($this->isVersion('13.0.1')){
+            $action = new RegisterResourceService();
+            $action->setServiceLocator($this->getServiceManager());
+            $action->__invoke([]);
+
+            $this->setVersion('14.0.0');
+        }
     }
 
     private function migrateFsAccess() {
