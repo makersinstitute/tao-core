@@ -151,8 +151,13 @@ define([
                     if(self.hasNode(node.uri) || (params && params.offset > 0 && node.type === 'class') ){
                         return acc;
                     }
+
+                    if(node.type === 'class' && self.config.selectClass){
+                        node.classUri = node.uri;
+                        self.addNode(node.uri,  _.omit(node, ['count', 'state', 'type', 'children']));
+                    }
                     if(node.type === 'instance'){
-                        self.addNode([node.uri],  _.omit(node, ['count', 'state', 'type', 'children']));
+                        self.addNode(node.uri,  _.omit(node, ['count', 'state', 'type', 'children']));
                         node.icon = config.icon;
                     }
                     if(node.children && node.children.length){
@@ -236,9 +241,22 @@ define([
                     if($instance.hasClass('selected')){
                         self.unselect($instance.data('uri'));
                     } else {
-                        if(self.config.multiple !== true){
+                        if(!self.is('multiple')){
                             self.clearSelection();
                         }
+                        self.select($instance.data('uri'));
+                    }
+                });
+
+                $component.on('click', '.class', function(e){
+                    var $instance = $(e.currentTarget);
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if($instance.hasClass('selected')){
+                        self.unselect($instance.data('uri'));
+                    } else {
+                        self.clearSelection();
                         self.select($instance.data('uri'));
                     }
                 });

@@ -133,6 +133,8 @@ define([
 
                 this.classUri = this.config.classUri;
 
+                this.setState('multiple', !!this.config.multiple);
+
                 this.render($container);
             })
             .on('render', function(){

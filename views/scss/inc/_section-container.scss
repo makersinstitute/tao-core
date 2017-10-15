@@ -97,12 +97,19 @@
         background:  $canvas;
         @include simple-flex-box($treeSidebar * 1px);
         border-right: 1px $uiGeneralContentBorder solid;
+        @include flex-container(nowrap, column);
+
         .block-title {
             @include font-size(14);
             padding: 2px 8px;
             margin: 0;
         }
+        .section-trees {
+            @include simple-flex-box;
+            max-height: calc(100% - 200px);
+        }
         .tree-action-bar-box {
+            @include simple-flex-box(130px, 0);
             margin: 10px 0;
             opacity: 0;
             &.active {

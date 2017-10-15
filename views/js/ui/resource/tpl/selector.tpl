@@ -1,4 +1,4 @@
-<div class="resource-selector">
+<div class="resource-selector {{#if multiple}}multiple{{/if}}">
 
     <nav class="context">
         <div class="class-context"></div>
@@ -15,7 +15,10 @@
             {{/if}}
         </div>
         <div class="selection-control">
-            <label>
+            <a href="#" class="toggle-mode {{#unless switchMode}}hidden{{/unless}}" title="{{__ 'Multiple selection'}}">
+                <span class="icon-multiple"></span>
+            </a>
+            <label class="{{#unless multiple}}hidden{{/unless}}">
                 <input type="checkbox" />
                 <span class="icon-checkbox"></span>
             </label>
@@ -26,12 +29,14 @@
     </nav>
 
     <main>
-
         <span class="hidden no-results">{{noResultsText}}</span>
     </main>
+
+    {{#if showSelection}}
     <footer>
         <div class="get-selection">
            <span>{{__ 'Selected'}} {{type}} : </span><span class="selected-num">0</span>
         </div>
     </footer>
+    {{/if}}
 </div>
