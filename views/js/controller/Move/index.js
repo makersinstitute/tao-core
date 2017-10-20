@@ -16,12 +16,17 @@ define([
                 .then(function(classes) {
 
                     classSelectorFactory($('.class-selector-container'), {
-                        classes : classes
+                        classes : classes,
+                        placeholder : 'select the destination class'
                     })
                 })
                 .catch(function(err){
                     console.error(err);
                 });
+
+            $('button', $('form-content')).click(function(e){
+                e.preventDefault();
+            });
         }
     }
 });

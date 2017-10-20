@@ -106,7 +106,7 @@
         }
         .section-trees {
             @include simple-flex-box;
-            max-height: calc(100% - 200px);
+
         }
         .tree-action-bar-box {
             @include simple-flex-box(130px, 0);

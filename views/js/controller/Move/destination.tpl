@@ -1,8 +1,6 @@
-
-<div class="xhtml_form">
+<div>
     <form>
         <div>
-            <label>Destination Class</label>
             <div class="form-elt class-selector-container">
 
             </div>
